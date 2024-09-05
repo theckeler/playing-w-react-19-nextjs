@@ -43,7 +43,7 @@ function Form() {
 export default function UseFormStatus() {
 	return (
 		<div className="flex flex-col p-6 bg-slate-100 border gap-2 items-center w-full relative">
-			<h2>useActionState:</h2>
+			<h2>useFormStatus:</h2>
 
 			<form action={submitForm} className="w-full flex flex-col gap-2">
 				<Form />
