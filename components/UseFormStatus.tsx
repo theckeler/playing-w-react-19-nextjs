@@ -1,9 +1,6 @@
 "use client";
 import { useFormStatus } from "react-dom";
-
-export async function submitForm() {
-	await new Promise((res) => setTimeout(res, 2000));
-}
+import { SubmitForm } from "./SubmitForm";
 
 function Form() {
 	const { pending, data, method } = useFormStatus();
@@ -12,7 +9,7 @@ function Form() {
 	return (
 		<>
 			{simpleInputValue && method && (
-				<div className="p-4 absolute top-full w-full left-0 bg-yellow-300">
+				<div className="p-4 absolute top-full w-full left-0 bg-yellow-300 z-50">
 					<ul>
 						<li>Inputted Value: {simpleInputValue}</li>
 						<li>Method: {method}</li>
@@ -26,6 +23,7 @@ function Form() {
 				className="w-full p-2 bg-yellow-100"
 				disabled={pending}
 				placeholder="Input text..."
+				defaultValue="Lorem ipsum..."
 				required
 			/>
 
@@ -45,7 +43,7 @@ export default function UseFormStatus() {
 		<div className="flex flex-col p-6 bg-slate-100 border gap-2 items-center w-full relative">
 			<h2>useFormStatus:</h2>
 
-			<form action={submitForm} className="w-full flex flex-col gap-2">
+			<form action={SubmitForm} className="w-full flex flex-col gap-2">
 				<Form />
 			</form>
 		</div>
