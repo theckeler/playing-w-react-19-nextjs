@@ -69,7 +69,7 @@ export default function UseActionState() {
 		<div className="flex flex-col p-6 bg-slate-100 border gap-2 items-center w-full">
 			<h2>useActionState:</h2>
 			<form className="flex flex-col gap-2 w-full">
-				<ul className="grid grid-cols-2 gap-4 items-stretch min-h-[200px]">
+				<ul className="grid md:grid-cols-2 gap-4 items-stretch min-h-[200px]">
 					<li className="border bg-yellow-100 rounded p-4 flex gap-2 flex-col">
 						<span>Previous State:</span>
 						<span className="">{quote?.quotePrev?.quote}</span>
