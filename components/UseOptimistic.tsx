@@ -4,6 +4,7 @@ import { SubmitForm } from "./SubmitForm";
 
 export default function UseOptimistic() {
 	// const num = 100;
+	const [isPending, startTransition] = useTransition();
 	const [defaultNum, setDefaultNum] = useState(100);
 	const [optimisticState, addOptimistic] = useOptimistic(
 		defaultNum,
@@ -11,7 +12,6 @@ export default function UseOptimistic() {
 			return state + addNum;
 		}
 	);
-	const [isPending, startTransition] = useTransition();
 
 	const updateNumber = (addNum: number) => {
 		startTransition(async () => {
@@ -32,10 +32,10 @@ export default function UseOptimistic() {
 			<div className="w-full flex flex-col gap-2">
 				<button
 					onClick={() => updateNumber(1)}
-					className="py-2 px-8 bg-black text-yellow-200 uppercase"
+				className="py-2 px-8 bg-black text-yellow-200 uppercase w-full disabled:bg-slate-200 disabled:text-red-700"
 					disabled={isPending ? true : false}
 				>
-					Add
+					{isPending === true ? "Processing..." : "Add"}
 				</button>
 				<div className="bg-yellow-400 p-2">
 					optimisticState: {optimisticState}
