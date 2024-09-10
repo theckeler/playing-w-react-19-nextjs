@@ -1,14 +1,15 @@
 "use client";
-import { startTransition, useOptimistic } from "react";
+import { startTransition, useOptimistic, useState } from "react";
 import { SubmitForm } from "./SubmitForm";
 
 export default function UseOptimistic() {
-	const num = 100;
+	// const num = 100;
+	const [defaultNum, setDefaultNum] = useState(100);
 	const [optimisticState, addOptimistic] = useOptimistic(
-		num,
+		defaultNum,
 		(state, addNum: any) => {
-			console.log("state", state);
-			console.log("addNum", addNum);
+			// console.log("state", state);
+			// console.log("addNum", addNum);
 			return state + addNum;
 		}
 	);
@@ -17,6 +18,8 @@ export default function UseOptimistic() {
 		startTransition(async () => {
 			addOptimistic(addNum);
 			await SubmitForm();
+			console.log("optimisticState", optimisticState);
+			setDefaultNum(defaultNum + addNum);
 		});
 	};
 
