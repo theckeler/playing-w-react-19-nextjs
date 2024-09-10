@@ -1,5 +1,5 @@
 "use client";
-import { startTransition, useOptimistic, useState } from "react";
+import { useOptimistic, useState, useTransition } from "react";
 import { SubmitForm } from "./SubmitForm";
 
 export default function UseOptimistic() {
@@ -11,6 +11,7 @@ export default function UseOptimistic() {
 			return state + addNum;
 		}
 	);
+	const [isPending, startTransition] = useTransition();
 
 	const updateNumber = (addNum: number) => {
 		startTransition(async () => {
@@ -32,6 +33,7 @@ export default function UseOptimistic() {
 				<button
 					onClick={() => updateNumber(1)}
 					className="py-2 px-8 bg-black text-yellow-200 uppercase"
+					disabled={isPending ? true : false}
 				>
 					Add
 				</button>
