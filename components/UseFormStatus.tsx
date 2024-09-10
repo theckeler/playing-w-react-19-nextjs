@@ -8,15 +8,6 @@ function Form() {
 
 	return (
 		<>
-			{simpleInputValue && method && (
-				<div className="p-4 absolute top-full w-full left-0 bg-yellow-300 z-50">
-					<ul>
-						<li>Inputted Value: {simpleInputValue}</li>
-						<li>Method: {method}</li>
-					</ul>
-				</div>
-			)}
-
 			<input
 				type="text"
 				name="simpleInput"
@@ -34,6 +25,15 @@ function Form() {
 			>
 				{pending ? "Submitting..." : "Submit"}
 			</button>
+
+			{simpleInputValue && method && (
+				<div className="p-4 absolute top-full w-full left-0 bg-yellow-300 z-50 shadow-lg">
+					<ul>
+						<li>Inputted Value: {simpleInputValue}</li>
+						<li>Method: {method}</li>
+					</ul>
+				</div>
+			)}
 		</>
 	);
 }

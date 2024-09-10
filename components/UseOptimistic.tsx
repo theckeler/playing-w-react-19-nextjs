@@ -1,5 +1,5 @@
 "use client";
-import { startTransition, useOptimistic, useState } from "react";
+import { startTransition, useEffect, useOptimistic, useState } from "react";
 import { SubmitForm } from "./SubmitForm";
 
 export default function UseOptimistic() {
@@ -8,7 +8,7 @@ export default function UseOptimistic() {
 	const [optimisticState, addOptimistic] = useOptimistic(
 		defaultNum,
 		(state, addNum: any) => {
-			// console.log("state", state);
+			//  console.log("state", state);
 			// console.log("addNum", addNum);
 			return state + addNum;
 		}
@@ -18,10 +18,13 @@ export default function UseOptimistic() {
 		startTransition(async () => {
 			addOptimistic(addNum);
 			await SubmitForm();
-			console.log("optimisticState", optimisticState);
-			setDefaultNum(defaultNum + addNum);
+			setDefaultNum(optimisticState + addNum);
 		});
 	};
+
+	useEffect(() => {
+		console.log("defaultNum:", defaultNum);
+	}, [defaultNum]);
 
 	return (
 		<div className="flex flex-col p-6 bg-slate-100 border gap-2 items-center w-full relative">
